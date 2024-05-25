@@ -1,0 +1,8 @@
+.background {
+	background: rgb(11, 58, 225);
+	background: linear-gradient(90deg, rgba(11, 58, 225, 1) 0%, rgba(138, 16, 188, 1) 47%, rgba(250, 0, 0, 1) 100%);
+}
+
+.list-group-item {
+	transition: all 0.3s ease;
+}

@@ -1,0 +1,14 @@
+<nav class="navbar bg-dark px-5 mb-4">
+  <h1 class="navbar navbar-nav text-white">My Blog</h1>
+  <a href="<%= new_blog_post_path %>" class="btn btn-outline-primary">Create New Post</a>
+</nav>
+<div class="container">
+  <ul class="list-group">
+    <% @posts.each do |post| %>
+      <a  class="list-group-item list-group-item-action list-group-item-dark bg-dark" href="<%= blog_post_path(post) %>">
+        <h2><%= post.title %></h2>
+        <p><%= post.body %></p>
+      </a>
+    <% end %>
+  </ul>
+</div>
