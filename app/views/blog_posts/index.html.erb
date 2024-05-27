@@ -1,14 +1,25 @@
 <nav class="navbar bg-dark px-5 mb-4">
   <h1 class="navbar navbar-nav text-white">My Blog</h1>
-  <a href="<%= new_blog_post_path %>" class="btn btn-outline-primary">Create New Post</a>
+  <div class="d-flex justify-content-end" style=" column-gap: 10px; ">
+    <% if user_signed_in? %>
+      <a href="<%= new_blog_post_path %>" class="btn btn-outline-primary">Create New Post</a>
+      <%= link_to "Profile", edit_user_registration_path, class: "btn btn-outline-info" %>
+      <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger" %>
+    <% else %>
+      <%= link_to "Sign In", new_user_session_path, class: "btn btn-outline-success" %>
+      <br/>
+      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-info" %>
+    <% end %>
+  </div>
 </nav>
+<!-- this for showing messages one time -->
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: name %>
+<% end %>
 <div class="container">
   <ul class="list-group">
     <% @posts.each do |post| %>
-      <a  class="list-group-item list-group-item-action list-group-item-dark bg-dark" href="<%= blog_post_path(post) %>">
-        <h2><%= post.title %></h2>
-        <p><%= post.body %></p>
-      </a>
+      <%= render "post", post: post %>
     <% end %>
   </ul>
 </div>

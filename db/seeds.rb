@@ -9,3 +9,4 @@
 #   end
 
 BlogPost.seeds
+User.seeds

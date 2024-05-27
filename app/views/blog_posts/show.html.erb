@@ -1,7 +1,14 @@
-<div class="container pt-5 align-items-center justify-content-center">
-  <div class="card bg-dark text-white p-5">
+<div class="container d-flex pt-5 align-items-center justify-content-center">
+  <div class="card w-75  bg-dark text-white p-5">
     <h1 class="text-center"><%= @post.title %></h1>
     <p><%= @post.body %></p>
-    <div><a class="btn btn-primary" href="<%= root_path %>">Back Home</a></div>
+    <div class="row justify-content-end">
+      <div style="width: fit-content; display:flex; justify-content:space-between">
+        <% if user_signed_in? %>
+          <a class="btn btn-warning mx-4" href="<%= edit_blog_post_path(@post) %>">Edit Post</a>
+        <% end %>
+        <a class="btn btn-primary" href="<%= root_path %>">Back Home</a>
+      </div>
+    </div>
   </div>
 </div>

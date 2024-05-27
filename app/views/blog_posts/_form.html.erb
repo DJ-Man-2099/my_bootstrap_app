@@ -1,0 +1,32 @@
+<div class="container card bg-body py-3 col-6">
+  <%= form_with model: post do |f| %>
+    <div class="form-floating">
+      <%= f.text_field :title, class: "form-control #{"is-valid" if defined?(@form_submitted) && @form_submitted} 
+                #{"is-invalid" if f.object.errors[:title].any?}", placeholder: "" %>
+      <%= f.label :title, class: "form-label" %>
+      <div class="invalid-feedback">
+        <%= f.object.errors[:title].join(", ") %>
+      </div>
+      <div class="valid-feedback">
+        Looks Good
+      </div>
+    </div>
+    <br/>
+    <div class="form-floating">
+      <%= f.text_area :body, class: "form-control #{"is-valid" if defined?(@form_submitted) && @form_submitted} #{"is-invalid" if f.object.errors[:body].any?}", placeholder: "" %>
+      <%= f.label :body, class: "form-label" %>
+      <div class="invalid-feedback">
+        <%= f.object.errors[:body].join(", ") %>
+      </div>
+      <div class="valid-feedback">
+        Looks Good
+      </div>
+    </div>
+    <br/>
+    <div class="row justify-content-end">
+      <div style="width: fit-content">
+        <%= f.button class: "btn btn-outline-success" %>
+      </div>
+    </div>
+  <% end %>
+</div>
