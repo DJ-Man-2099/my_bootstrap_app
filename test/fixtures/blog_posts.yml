@@ -1,0 +1,12 @@
+draft:
+  title: Draft
+  body: Draft Text is here
+  published_at: nil
+published:
+  title: Published
+  body: Published Text is here
+  published_at: <%= 1.month.ago %>
+scheduled:
+  title: Scheduled
+  body: Scheduled Text is here
+  published_at: <%= 1.year.from_now %>
