@@ -1,7 +1,23 @@
-<nav class="navbar bg-dark px-5 mb-4">
+<nav class="navbar bg-dark px-5 mb-4 sticky-top">
   <h1 class="navbar navbar-nav text-white">My Blog</h1>
   <div class="d-flex justify-content-end" style=" column-gap: 10px; ">
     <% if user_signed_in? %>
+      <div class="text-white d-flex align-items-center" style="column-gap: 30px">Filter By:
+        <div class="d-flex justify-content-end" style=" column-gap: 10px; ">
+          <%= link_to 'Scheduled', root_path(type: 'scheduled'),
+            class: "btn btn-outline-warning #{"active" if params[:type] == 'scheduled'}"
+          %>
+          <%= link_to 'Published', root_path(type: 'published'),
+            class: "btn btn-outline-success #{"active" if params[:type] == 'published'}"
+          %>
+          <%= link_to 'Draft', root_path(type: 'draft'),
+            class: "btn btn-outline-danger #{"active" if params[:type] == 'draft'}"
+          %>
+          <%= link_to 'Clear Filters', root_path,
+            class: "btn btn-outline-info"
+          %>
+        </div>
+      </div>
       <a href="<%= new_blog_post_path %>" class="btn btn-outline-primary">Create New Post</a>
       <%= link_to "Profile", edit_user_registration_path, class: "btn btn-outline-info" %>
       <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger" %>
@@ -16,7 +32,7 @@
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, class: name %>
 <% end %>
-<div class="container">
+<div class="container pb-5">
   <ul class="list-group">
     <% @posts.each do |post| %>
       <%= render "post", post: post %>

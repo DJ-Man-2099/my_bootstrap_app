@@ -1,4 +1,4 @@
-<nav class="navbar bg-dark px-5 mb-4">
+<nav class="navbar bg-dark px-5 mb-4 sticky-top">
   <h1 class="navbar navbar-nav text-white"><%= @title %></h1>
   <div class="d-flex justify-content-end", style="column-gap:10px">
     <%= button_to "Delete Post", blog_post_path(@post), method: :delete, data: {
