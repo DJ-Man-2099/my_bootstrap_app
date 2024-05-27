@@ -1,4 +1,13 @@
 <a  class="list-group-item list-group-item-action list-group-item-dark bg-dark" href="<%= blog_post_path(post) %>">
+  <% if user_signed_in? %>
+    <% if post.draft? %>
+      <h3 class="text-danger">Draft</h3>
+    <% elsif post.published? %>
+      <h3 class="text-success">Published</h3>
+    <% else %>
+      <h3 class="text-warning">Scheduled</h3>
+    <% end %>
+  <% end %>
   <h2><%= post.title %></h2>
   <p><%= post.body %></p>
 </a>

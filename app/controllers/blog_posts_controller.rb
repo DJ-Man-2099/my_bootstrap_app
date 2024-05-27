@@ -4,8 +4,30 @@ class BlogPostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_blog_post, only: [:show, :edit, :update, :destroy]
 
+  TYPE = {
+    draft: "draft",
+    published: "published",
+    scheduled: "scheduled",
+  }
+
   def index
-    @posts = BlogPost.all
+    type = params[:type]
+    @posts = if user_signed_in?
+        if type && TYPE.include?(type.to_sym)
+          case type
+          when TYPE[:published]
+            BlogPost.published
+          when TYPE[:scheduled]
+            BlogPost.scheduled
+          else
+            BlogPost.draft
+          end
+        else
+          @posts = BlogPost.sorted
+        end
+      else
+        @posts = BlogPost.published
+      end
   end
 
   def show; end
@@ -52,7 +74,7 @@ class BlogPostsController < ApplicationController
   private
 
   def set_blog_post
-    @post = BlogPost.find(params[:id])
+    @post = user_signed_in? ? BlogPost.find(params[:id]) : BlogPost.published.find(params[:id])
     # this is the catch block
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
@@ -65,6 +87,6 @@ class BlogPostsController < ApplicationController
   end
 
   def post_params
-    params.require(:blog_post).permit(:title, :body)
+    params.require(:blog_post).permit(:title, :body, :published_at)
   end
 end
