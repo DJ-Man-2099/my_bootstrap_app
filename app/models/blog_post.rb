@@ -3,7 +3,7 @@ class BlogPost < ApplicationRecord
   validates :body, presence: true, length: { minimum: 10 }
 
   # This allows calling BlogPost.draft, BlogPost.published, BlogPost.scheduled
-  scope :sorted, -> { order(published_at: :desc, updated_at: :desc) }
+  scope :sorted, -> { order(arel_table[:published_at].desc.nulls_last).order(updated_at: :desc) }
   # Ex:- scope :active, -> {where(:active => true)}
   scope :draft, -> { where(published_at: nil).order(updated_at: :desc) }
   scope :published, -> { where("published_at <= ?", Time.current).order(published_at: :desc) }
