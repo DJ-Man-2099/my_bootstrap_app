@@ -77,3 +77,5 @@ gem "rubocop", "~> 1.64"
 gem "devise", "~> 4.9"
 
 gem "tailwindcss-rails", "~> 2.6"
+
+gem "image_processing", "~> 1.12"

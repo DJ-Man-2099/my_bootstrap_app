@@ -1,7 +1,7 @@
 <div class="container d-flex pt-5 align-items-center justify-content-center">
   <div class="card w-75  bg-dark text-white p-5">
     <h1 class="text-center"><%= @post.title %></h1>
-    <p><%= @post.body %></p>
+    <%= @post.content %>
     <div class="row justify-content-end">
       <div style="width: fit-content; display:flex; justify-content:space-between">
         <% if user_signed_in? %>

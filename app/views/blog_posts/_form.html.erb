@@ -12,11 +12,11 @@
       </div>
     </div>
     <br/>
-    <div class="form-floating">
-      <%= f.text_area :body, class: "form-control #{"is-valid" if defined?(@form_submitted) && @form_submitted} #{"is-invalid" if f.object.errors[:body].any?}", placeholder: "" %>
-      <%= f.label :body, class: "form-label" %>
+    <div>
+      <%= f.label :content, class: "form-label" %>
+      <%= f.rich_text_area :content, class: "form-control #{"is-valid" if defined?(@form_submitted) && @form_submitted} #{"is-invalid" if f.object.errors[:content].any?}", placeholder: "" %>
       <div class="invalid-feedback">
-        <%= f.object.errors[:body].join(", ") %>
+        <%= f.object.errors[:content].join(", ") %>
       </div>
       <div class="valid-feedback">
         Looks Good

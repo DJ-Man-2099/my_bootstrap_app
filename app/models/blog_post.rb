@@ -1,6 +1,8 @@
 class BlogPost < ApplicationRecord
   validates :title, presence: true
-  validates :body, presence: true, length: { minimum: 10 }
+  # validates :body, presence: true, length: { minimum: 10 }
+  has_rich_text :content
+  validate :content_validation
 
   # This allows calling BlogPost.draft, BlogPost.published, BlogPost.scheduled
   scope :sorted, -> { order(arel_table[:published_at].desc.nulls_last).order(updated_at: :desc) }
@@ -35,6 +37,16 @@ class BlogPost < ApplicationRecord
       },
     ].each do |attributes|
       self.new(attributes).save
+    end
+  end
+
+  private
+
+  def content_validation
+    if content.body.blank?
+      errors.add(:content, "Content cannot be blank")
+    elsif content.body.to_plain_text.strip.length < 10
+      errors.add(:content, "Content must be a min of 10 chars")
     end
   end
 end

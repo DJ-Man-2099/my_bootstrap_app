@@ -1,4 +1,4 @@
-<a  class="list-group-item list-group-item-action list-group-item-dark bg-dark" href="<%= blog_post_path(post) %>">
+<div class="list-group-item list-group-item-action list-group-item-dark bg-dark" style="cursor: pointer;" data-url="<%= blog_post_path(post) %>" onclick="window.location=this.dataset.url">
   <% if user_signed_in? %>
     <% if post.draft? %>
       <h3 class="text-danger">Draft</h3>
@@ -9,5 +9,4 @@
     <% end %>
   <% end %>
   <h2><%= post.title %></h2>
-  <p><%= post.body %></p>
-</a>
+</div>
