@@ -2,9 +2,4 @@
   <h1 class="navbar navbar-nav text-white">New Blog Post</h1>
   <a href="<%= root_path %>" class="btn btn-outline-primary">Home</a>
 </nav>
-<div style="max-height: 85vh;">
-  <div class="h-100 container card align-items-center bg-body py-1 col-6">
-    <%= image_tag @post.cover_image, class: "card mb-2", style: "height: 30vh;width: 100%;object-fit: fill;"  if @post.cover_image.present? %>
-    <%= render partial:'form', locals:{post: @post} %>
-  </div>
-</div>
+<%= render partial:'form', locals:{post: @post} %>

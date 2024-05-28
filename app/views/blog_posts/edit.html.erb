@@ -7,9 +7,4 @@
     <a href="<%= blog_post_path(@post) %>" class="btn btn-outline-primary">Cancel</a>
   </div>
 </nav>
-<div style="max-height: 85vh;">
-  <div class="h-100 container card align-items-center bg-body py-1 col-6">
-    <%= image_tag @post.cover_image, class: "card mb-2", style: "height: 20vh;width: 85%;object-fit: fill;"  if @post.cover_image.present? %>
-    <%= render "form", post: @post %>
-  </div>
-</div>
+<%= render "form", post: @post %>
