@@ -32,7 +32,7 @@
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, class: name %>
 <% end %>
-<div class="container pb-5" style="max-height: 80vh;overflow-y:auto;">
+<div class="container" style="max-height: 80vh;overflow-y:auto;">
   <ul class="list-group">
     <% @posts.each do |post| %>
       <%= render "post", post: post %>
