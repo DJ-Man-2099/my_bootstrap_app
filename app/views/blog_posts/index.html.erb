@@ -32,15 +32,15 @@
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, class: name %>
 <% end %>
-<div class="container" style="max-height: 80vh;overflow-y:auto; flex:1;">
+<div class="container" style="overflow-y:auto; flex:1;">
   <ul class="list-group">
     <% @posts.each do |post| %>
       <%= render "post", post: post %>
     <% end %>
   </ul>
 </div>
-<div class="d-flex justify-content-center align-items-center w-100" style="position: absolute; bottom: 0;">
-  <div class="card px-4 py-1 mb-2 bg-dark-subtle flex-row justify-content-center align-items-center" style="column-gap: 10px;">
+<div class="d-flex justify-content-center w-100 py-2">
+  <div class="card px-4 py-1 bg-dark-subtle flex-row justify-content-center align-items-center" style="column-gap: 10px;">
     <%== pagy_bootstrap_nav(@pagy)  %>
     <%== pagy_info(@pagy)  %>
   </div>
