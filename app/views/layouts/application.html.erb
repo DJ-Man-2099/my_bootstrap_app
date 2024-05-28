@@ -12,7 +12,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <%= javascript_include_tag "test", "data-turbo-track": "reload", type: "module" %>
   </head>
-  <body class="h-100 background">
+  <body class="h-100 background d-flex flex-column">
     <%= yield %>
   </body>
 </html>
