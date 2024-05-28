@@ -1,5 +1,5 @@
 <div style="min-height: 80vh;">
-  <div class="container card align-items-center bg-body py-1 col-6">
+  <div class="container card align-items-center bg-body py-3 col-6">
     <%= image_tag @post.cover_image, class: "card mb-2", style: "height: 25vh;width: 85%;object-fit: fill;"  if @post.cover_image.present? %>
     <%= form_with model: post do |f| %>
       <div class="form-floating">
