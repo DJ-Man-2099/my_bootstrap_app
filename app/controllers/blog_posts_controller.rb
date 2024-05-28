@@ -28,6 +28,7 @@ class BlogPostsController < ApplicationController
       else
         @posts = BlogPost.published
       end
+    @pagy, @posts = pagy(@posts)
   end
 
   def show; end

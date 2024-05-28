@@ -8,5 +8,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-BlogPost.seeds
-User.seeds
+# BlogPost.seeds
+# User.seeds
+# (1..100).each do |i|
+#   BlogPost.create title: "Hello, no.#{i}", content: "Testing Pagination", published_at: DateTime.now
+# end

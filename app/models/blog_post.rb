@@ -29,11 +29,11 @@ class BlogPost < ApplicationRecord
     [
       {
         title: "Hello, Rails!",
-        body: "This is a blog post about Rails.",
+        content: "This is a blog post about Rails.",
       },
       {
         title: "Hello again, Rails!",
-        body: "This is a second blog post about Rails.",
+        content: "This is a second blog post about Rails.",
       },
     ].each do |attributes|
       self.new(attributes).save
