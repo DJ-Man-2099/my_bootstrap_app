@@ -1,6 +1,7 @@
 class BlogPost < ApplicationRecord
   validates :title, presence: true
   # validates :body, presence: true, length: { minimum: 10 }
+  has_one_attached :cover_image
   has_rich_text :content
   validate :content_validation
 
@@ -8,8 +9,8 @@ class BlogPost < ApplicationRecord
   scope :sorted, -> { order(arel_table[:published_at].desc.nulls_last).order(updated_at: :desc) }
   # Ex:- scope :active, -> {where(:active => true)}
   scope :draft, -> { where(published_at: nil).order(updated_at: :desc) }
-  scope :published, -> { where("published_at <= ?", Time.current).order(published_at: :desc) }
-  scope :scheduled, -> { where("published_at > ?", Time.current).order(published_at: :desc) }
+  scope :published, -> { where("published_at <= ?", Time.current).order(published_at: :desc).order(updated_at: :desc) }
+  scope :scheduled, -> { where("published_at > ?", Time.current).order(published_at: :desc).order(updated_at: :desc) }
 
   def draft?
     published_at.nil?

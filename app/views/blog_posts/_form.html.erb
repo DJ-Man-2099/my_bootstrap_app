@@ -1,43 +1,46 @@
-<div class="container card bg-body py-3 col-6">
   <%= form_with model: post do |f| %>
-    <div class="form-floating">
-      <%= f.text_field :title, class: "form-control #{"is-valid" if defined?(@form_submitted) && @form_submitted} 
+  <div class="form-floating">
+    <%= f.text_field :title, class: "form-control #{"is-valid" if defined?(@form_submitted) && @form_submitted} 
                 #{"is-invalid" if f.object.errors[:title].any?}", placeholder: "" %>
-      <%= f.label :title, class: "form-label" %>
-      <div class="invalid-feedback">
-        <%= f.object.errors[:title].join(", ") %>
-      </div>
-      <div class="valid-feedback">
-        Looks Good
-      </div>
+    <%= f.label :title, class: "form-label" %>
+    <div class="invalid-feedback">
+      <%= f.object.errors[:title].join(", ") %>
     </div>
-    <br/>
-    <div>
-      <%= f.label :content, class: "form-label" %>
-      <%= f.rich_text_area :content, class: "form-control #{"is-valid" if defined?(@form_submitted) && @form_submitted} #{"is-invalid" if f.object.errors[:content].any?}", placeholder: "" %>
-      <div class="invalid-feedback">
-        <%= f.object.errors[:content].join(", ") %>
-      </div>
-      <div class="valid-feedback">
-        Looks Good
-      </div>
+    <div class="valid-feedback">
+      Looks Good
     </div>
-    <br/>
-    <div>
-      <%= f.label :published_at, class: "form-label" %>
-      <%= f.datetime_select :published_at, include_blank: true, class: "form-control #{"is-valid" if defined?(@form_submitted) && @form_submitted} #{"is-invalid" if f.object.errors[:published_at].any?}", placeholder: "" %>
-      <div class="invalid-feedback">
-        <%= f.object.errors[:published_at].join(", ") %>
-      </div>
-      <div class="valid-feedback">
-        Looks Good
-      </div>
+  </div>
+  <br/>
+  <div>
+    <%= f.label :cover_image, class: "form-label" %>
+    <%= f.file_field :cover_image, class: "form-control"%>
+  </div>
+  <br/>
+  <div>
+    <%= f.label :content, class: "form-label" %>
+    <%= f.rich_text_area :content, class: "form-control #{"is-valid" if defined?(@form_submitted) && @form_submitted} #{"is-invalid" if f.object.errors[:content].any?}", placeholder: "" %>
+    <div class="invalid-feedback">
+      <%= f.object.errors[:content].join(", ") %>
     </div>
-    <br/>
-    <div class="row justify-content-end">
-      <div style="width: fit-content">
-        <%= f.button class: "btn btn-outline-success" %>
-      </div>
+    <div class="valid-feedback">
+      Looks Good
     </div>
-  <% end %>
-</div>
+  </div>
+  <br/>
+  <div>
+    <%= f.label :published_at, class: "form-label" %>
+    <%= f.datetime_select :published_at, include_blank: true, class: "form-control #{"is-valid" if defined?(@form_submitted) && @form_submitted} #{"is-invalid" if f.object.errors[:published_at].any?}", placeholder: "" %>
+    <div class="invalid-feedback">
+      <%= f.object.errors[:published_at].join(", ") %>
+    </div>
+    <div class="valid-feedback">
+      Looks Good
+    </div>
+  </div>
+  <br/>
+  <div class="row justify-content-end">
+    <div style="width: fit-content">
+      <%= f.button class: "btn btn-outline-success" %>
+    </div>
+  </div>
+<% end %>
