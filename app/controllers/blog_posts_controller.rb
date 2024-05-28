@@ -29,6 +29,12 @@ class BlogPostsController < ApplicationController
         @posts = BlogPost.published
       end
     @pagy, @posts = pagy(@posts)
+  rescue Pagy::OverflowError
+    # this doesn't cause a redirect
+    params[:page] = 1
+    retry
+    # this causes a redirect, but change url
+    # redirect_to(request.path_parameters.merge(page: 1))
   end
 
   def show; end
