@@ -1,6 +1,8 @@
 <div style="min-height: 80vh;">
   <div class="container card align-items-center bg-body py-3 col-6">
-    <%= image_tag @post.cover_image, class: "card mb-2", style: "height: 25vh;width: 85%;object-fit: fill;"  if @post.cover_image.present? %>
+    <div id="<%= dom_id(post, :cover_image) %>">
+      <%= image_tag post.cover_image, class: "card mb-2", style: "height: 25vh;width: 85%;object-fit: fill;"  if post.cover_image.present? %>
+    </div>
     <%= form_with model: post do |f| %>
       <div class="form-floating">
         <%= f.text_field :title, class: "form-control #{"is-valid" if defined?(@form_submitted) && @form_submitted} 
@@ -16,6 +18,13 @@
       <br/>
       <div>
         <%= f.label :cover_image, class: "form-label" %>
+        <% if post.cover_image.present? %>
+          <%# must be a link_to, as ypu can't have 2 forms%>
+          <%= link_to 'Remove Cover Image', blog_post_cover_image_path(post), data:{
+            turbo_method: :delete,
+            turbo_confirm: "Are You Sure???"
+                    }, class: "btn btn-danger" %>
+        <% end %>
         <%= f.file_field :cover_image, class: "form-control"%>
       </div>
       <br/>
